@@ -1017,7 +1017,7 @@
     </param>
     <param>
       <key>update_time</key>
-      <value>0.10</value>
+      <value>0.30</value>
     </param>
     <param>
       <key>wintype</key>
@@ -2412,7 +2412,7 @@
     </param>
     <param>
       <key>center_freq0</key>
-      <value>1.28e9</value>
+      <value>1280e6</value>
     </param>
     <param>
       <key>norm_gain0</key>
