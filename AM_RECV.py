@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Top Block
-# Generated: Sun Apr 19 04:40:07 2020
+# Title: Am Recv
+# Generated: Sun Apr 19 05:38:28 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -34,12 +34,12 @@ import sys
 import time
 
 
-class top_block(gr.top_block, Qt.QWidget):
+class AM_RECV(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Top Block")
+        gr.top_block.__init__(self, "Am Recv")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Top Block")
+        self.setWindowTitle("Am Recv")
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
@@ -56,29 +56,29 @@ class top_block(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "top_block")
+        self.settings = Qt.QSettings("GNU Radio", "AM_RECV")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
         ##################################################
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 200000
-        self.gain = gain = 50
+        self.gain = gain = 30
         self.fc = fc = 32000
-        self.Amplifier = Amplifier = 20
+        self.Amp = Amp = 20
 
         ##################################################
         # Blocks
         ##################################################
-        self._gain_range = Range(0, 100, 10, 50, 200)
+        self._gain_range = Range(0, 100, 10, 30, 200)
         self._gain_win = RangeWidget(self._gain_range, self.set_gain, "gain", "counter_slider", float)
         self.top_layout.addWidget(self._gain_win)
         self._fc_range = Range(16000, 100000, 100, 32000, 200)
         self._fc_win = RangeWidget(self._fc_range, self.set_fc, "Carrier Frequency", "counter_slider", float)
         self.top_layout.addWidget(self._fc_win)
-        self._Amplifier_range = Range(0, 200, 20, 20, 200)
-        self._Amplifier_win = RangeWidget(self._Amplifier_range, self.set_Amplifier, "Amplifier", "counter_slider", float)
-        self.top_layout.addWidget(self._Amplifier_win)
+        self._Amp_range = Range(2, 200, 20, 20, 200)
+        self._Amp_win = RangeWidget(self._Amp_range, self.set_Amp, "Amp", "counter_slider", float)
+        self.top_layout.addWidget(self._Amp_win)
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("addr=192.168.10.2", "")),
         	uhd.stream_args(
@@ -87,7 +87,7 @@ class top_block(gr.top_block, Qt.QWidget):
         	),
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-        self.uhd_usrp_source_0.set_center_freq(1.28e9, 0)
+        self.uhd_usrp_source_0.set_center_freq(1280e6, 0)
         self.uhd_usrp_source_0.set_gain(gain, 0)
         self.uhd_usrp_source_0.set_antenna("RX2", 0)
         self.uhd_usrp_source_0.set_bandwidth(200e6, 0)
@@ -229,7 +229,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(62.8e-3, 4, False)
         self.dc_blocker_xx_0 = filter.dc_blocker_ff(32, True)
         self.blocks_multiply_xx_0 = blocks.multiply_vff(1)
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((Amplifier, ))
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((Amp, ))
         self.blocks_complex_to_float_0 = blocks.complex_to_float(1)
         self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, fc, 700e-3, 0)
 
@@ -248,7 +248,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.uhd_usrp_source_0, 0), (self.digital_costas_loop_cc_0, 0))    
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "top_block")
+        self.settings = Qt.QSettings("GNU Radio", "AM_RECV")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -259,11 +259,11 @@ class top_block(gr.top_block, Qt.QWidget):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 4500, 100, firdes.WIN_HAMMING, 6.76))
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_1.set_samp_rate(self.samp_rate)
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
+        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 4500, 100, firdes.WIN_HAMMING, 6.76))
 
     def get_gain(self):
         return self.gain
@@ -280,15 +280,15 @@ class top_block(gr.top_block, Qt.QWidget):
         self.fc = fc
         self.analog_sig_source_x_0.set_frequency(self.fc)
 
-    def get_Amplifier(self):
-        return self.Amplifier
+    def get_Amp(self):
+        return self.Amp
 
-    def set_Amplifier(self, Amplifier):
-        self.Amplifier = Amplifier
-        self.blocks_multiply_const_vxx_0.set_k((self.Amplifier, ))
+    def set_Amp(self, Amp):
+        self.Amp = Amp
+        self.blocks_multiply_const_vxx_0.set_k((self.Amp, ))
 
 
-def main(top_block_cls=top_block, options=None):
+def main(top_block_cls=AM_RECV, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
