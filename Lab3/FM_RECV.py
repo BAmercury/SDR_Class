@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Fm Recv
-# Generated: Sun Apr 26 02:18:13 2020
+# Generated: Sun Apr 26 20:08:58 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -148,88 +148,6 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
-        self.qtgui_freq_sink_x_1 = qtgui.freq_sink_f(
-        	1024, #size
-        	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	0, #fc
-        	samp_rate, #bw
-        	"Recieved Wave Signal", #name
-        	1 #number of inputs
-        )
-        self.qtgui_freq_sink_x_1.set_update_time(0.10)
-        self.qtgui_freq_sink_x_1.set_y_axis(-140, 10)
-        self.qtgui_freq_sink_x_1.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
-        self.qtgui_freq_sink_x_1.enable_autoscale(False)
-        self.qtgui_freq_sink_x_1.enable_grid(False)
-        self.qtgui_freq_sink_x_1.set_fft_average(1.0)
-        self.qtgui_freq_sink_x_1.enable_control_panel(False)
-        
-        if not True:
-          self.qtgui_freq_sink_x_1.disable_legend()
-        
-        if "float" == "float" or "float" == "msg_float":
-          self.qtgui_freq_sink_x_1.set_plot_pos_half(not True)
-        
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "green", "black", "cyan",
-                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_freq_sink_x_1.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_freq_sink_x_1.set_line_label(i, labels[i])
-            self.qtgui_freq_sink_x_1.set_line_width(i, widths[i])
-            self.qtgui_freq_sink_x_1.set_line_color(i, colors[i])
-            self.qtgui_freq_sink_x_1.set_line_alpha(i, alphas[i])
-        
-        self._qtgui_freq_sink_x_1_win = sip.wrapinstance(self.qtgui_freq_sink_x_1.pyqwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_freq_sink_x_1_win)
-        self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
-        	1024, #size
-        	firdes.WIN_BLACKMAN_hARRIS, #wintype
-        	0, #fc
-        	samp_rate, #bw
-        	"", #name
-        	1 #number of inputs
-        )
-        self.qtgui_freq_sink_x_0.set_update_time(0.10)
-        self.qtgui_freq_sink_x_0.set_y_axis(-140, 10)
-        self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
-        self.qtgui_freq_sink_x_0.enable_autoscale(False)
-        self.qtgui_freq_sink_x_0.enable_grid(False)
-        self.qtgui_freq_sink_x_0.set_fft_average(1.0)
-        self.qtgui_freq_sink_x_0.enable_control_panel(False)
-        
-        if not True:
-          self.qtgui_freq_sink_x_0.disable_legend()
-        
-        if "complex" == "float" or "complex" == "msg_float":
-          self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
-        
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "green", "black", "cyan",
-                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_freq_sink_x_0.set_line_label(i, labels[i])
-            self.qtgui_freq_sink_x_0.set_line_width(i, widths[i])
-            self.qtgui_freq_sink_x_0.set_line_color(i, colors[i])
-            self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
-        
-        self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
         self.low_pass_filter_1_0 = filter.fir_filter_fff(1, firdes.low_pass(
         	1, samp_rate, f_cut_off, 100, firdes.WIN_HAMMING, beta))
         self.low_pass_filter_1 = filter.fir_filter_fff(1, firdes.low_pass(
@@ -254,13 +172,11 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 1))    
         self.connect((self.analog_sig_source_x_1, 0), (self.blocks_multiply_xx_1, 1))    
         self.connect((self.blocks_complex_to_arg_0, 0), (self.blocks_wavfile_sink_0, 0))    
-        self.connect((self.blocks_complex_to_arg_0, 0), (self.qtgui_freq_sink_x_1, 0))    
         self.connect((self.blocks_complex_to_arg_0, 0), (self.qtgui_time_sink_x_0, 0))    
         self.connect((self.blocks_complex_to_float_0, 0), (self.rational_resampler_xxx_0, 0))    
         self.connect((self.blocks_delay_0, 0), (self.blocks_multiply_conjugate_cc_0, 0))    
         self.connect((self.blocks_float_to_complex_0, 0), (self.blocks_delay_0, 0))    
         self.connect((self.blocks_float_to_complex_0, 0), (self.blocks_multiply_conjugate_cc_0, 1))    
-        self.connect((self.blocks_float_to_complex_0, 0), (self.qtgui_freq_sink_x_0, 0))    
         self.connect((self.blocks_multiply_conjugate_cc_0, 0), (self.blocks_complex_to_arg_0, 0))    
         self.connect((self.blocks_multiply_xx_0, 0), (self.low_pass_filter_1_0, 0))    
         self.connect((self.blocks_multiply_xx_1, 0), (self.low_pass_filter_1, 0))    
@@ -293,8 +209,6 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         self.analog_sig_source_x_1.set_sampling_freq(self.samp_rate)
         self.low_pass_filter_1.set_taps(firdes.low_pass(1, self.samp_rate, self.f_cut_off, 100, firdes.WIN_HAMMING, self.beta))
         self.low_pass_filter_1_0.set_taps(firdes.low_pass(1, self.samp_rate, self.f_cut_off, 100, firdes.WIN_HAMMING, self.beta))
-        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
-        self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
 
     def get_gain(self):
