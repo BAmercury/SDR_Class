@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Fm Recv
-# Generated: Sun Apr 26 20:45:14 2020
+# Generated: Sun Apr 26 20:53:24 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -66,7 +66,7 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate = 48000
         self.gain = gain = 120
         self.fc = fc = 15000
-        self.f_cut_off = f_cut_off = 10000
+        self.f_cut_off = f_cut_off = 8000
         self.beta = beta = 4
 
         ##################################################
@@ -78,7 +78,7 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         self._fc_range = Range(0, 15000, 1000, 15000, 200)
         self._fc_win = RangeWidget(self._fc_range, self.set_fc, "Carrier Frequency", "counter_slider", float)
         self.top_layout.addWidget(self._fc_win)
-        self._f_cut_off_range = Range(0, 15000, 1000, 10000, 200)
+        self._f_cut_off_range = Range(0, 15000, 1000, 8000, 200)
         self._f_cut_off_win = RangeWidget(self._f_cut_off_range, self.set_f_cut_off, "f_cut_off", "counter_slider", float)
         self.top_layout.addWidget(self._f_cut_off_win)
         self._beta_range = Range(0, 4, 1, 4, 200)
