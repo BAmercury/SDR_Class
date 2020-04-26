@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Fm Recv
-# Generated: Sun Apr 26 20:08:58 2020
+# Generated: Sun Apr 26 20:13:31 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -92,7 +92,7 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         	),
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate_ursp)
-        self.uhd_usrp_source_0.set_center_freq(1320e6, 0)
+        self.uhd_usrp_source_0.set_center_freq(1340e6, 0)
         self.uhd_usrp_source_0.set_gain(gain, 0)
         self.uhd_usrp_source_0.set_antenna("TX/RX", 0)
         self.uhd_usrp_source_0.set_bandwidth(200e6, 0)
