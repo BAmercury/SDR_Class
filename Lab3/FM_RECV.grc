@@ -2153,11 +2153,11 @@
     </param>
     <param>
       <key>bw0</key>
-      <value>2006</value>
+      <value>200e6</value>
     </param>
     <param>
       <key>center_freq0</key>
-      <value>13208e6</value>
+      <value>1320e6</value>
     </param>
     <param>
       <key>dc_offs_enb0</key>

@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Sun Apr 26 01:20:57 2020
+# Generated: Sun Apr 26 01:40:29 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -89,10 +89,10 @@ class top_block(gr.top_block, Qt.QWidget):
         	),
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate_ursp)
-        self.uhd_usrp_source_0.set_center_freq(13208e6, 0)
+        self.uhd_usrp_source_0.set_center_freq(1320e6, 0)
         self.uhd_usrp_source_0.set_gain(gain, 0)
         self.uhd_usrp_source_0.set_antenna("TX/RX", 0)
-        self.uhd_usrp_source_0.set_bandwidth(2006, 0)
+        self.uhd_usrp_source_0.set_bandwidth(200e6, 0)
         self.rational_resampler_xxx_0 = filter.rational_resampler_fff(
                 interpolation=samp_rate,
                 decimation=samp_rate_ursp,
@@ -289,13 +289,13 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
-        self.analog_sig_source_x_1.set_sampling_freq(self.samp_rate)
         self.low_pass_filter_1.set_taps(firdes.low_pass(1, self.samp_rate, self.f_cut_off, 100, firdes.WIN_HAMMING, 6.76))
         self.low_pass_filter_1_0.set_taps(firdes.low_pass(1, self.samp_rate, self.f_cut_off, 100, firdes.WIN_HAMMING, 6.76))
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
+        self.analog_sig_source_x_1.set_sampling_freq(self.samp_rate)
+        self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
 
     def get_gain(self):
         return self.gain
@@ -310,8 +310,8 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_fc(self, fc):
         self.fc = fc
-        self.analog_sig_source_x_0.set_frequency(self.fc)
         self.analog_sig_source_x_1.set_frequency(self.fc)
+        self.analog_sig_source_x_0.set_frequency(self.fc)
 
     def get_f_cut_off(self):
         return self.f_cut_off
