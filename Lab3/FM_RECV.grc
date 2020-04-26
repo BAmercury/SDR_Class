@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>top_block</value>
+      <value>FM_RECV</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -925,7 +925,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/root/SDR_Class/Lab3/RECV_Piano2.wav</value>
+      <value>/root/SDR_Class/Lab3/test.wav</value>
     </param>
     <param>
       <key>_coordinate</key>

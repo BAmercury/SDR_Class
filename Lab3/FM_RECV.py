@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Top Block
-# Generated: Sun Apr 26 01:53:57 2020
+# Title: Fm Recv
+# Generated: Sun Apr 26 01:56:57 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -34,12 +34,12 @@ import sys
 import time
 
 
-class top_block(gr.top_block, Qt.QWidget):
+class FM_RECV(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Top Block")
+        gr.top_block.__init__(self, "Fm Recv")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Top Block")
+        self.setWindowTitle("Fm Recv")
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
@@ -56,7 +56,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "top_block")
+        self.settings = Qt.QSettings("GNU Radio", "FM_RECV")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
         ##################################################
@@ -235,7 +235,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.low_pass_filter_1 = filter.fir_filter_fff(1, firdes.low_pass(
         	1, samp_rate, f_cut_off, 100, firdes.WIN_HAMMING, beta))
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(62.8e-3, 4, False)
-        self.blocks_wavfile_sink_0 = blocks.wavfile_sink("/root/SDR_Class/Lab3/RECV_Piano2.wav", 1, samp_rate, 8)
+        self.blocks_wavfile_sink_0 = blocks.wavfile_sink("/root/SDR_Class/Lab3/RECV_Piano.wav", 1, samp_rate, 8)
         self.blocks_multiply_xx_1 = blocks.multiply_vff(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vff(1)
         self.blocks_multiply_conjugate_cc_0 = blocks.multiply_conjugate_cc(1)
@@ -272,7 +272,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.uhd_usrp_source_0, 0), (self.digital_costas_loop_cc_0, 0))    
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "top_block")
+        self.settings = Qt.QSettings("GNU Radio", "FM_RECV")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -330,7 +330,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.low_pass_filter_1_0.set_taps(firdes.low_pass(1, self.samp_rate, self.f_cut_off, 100, firdes.WIN_HAMMING, self.beta))
 
 
-def main(top_block_cls=top_block, options=None):
+def main(top_block_cls=FM_RECV, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
