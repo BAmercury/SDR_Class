@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>top_block</value>
+      <value>testtest</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -109,6 +109,53 @@
     </param>
   </block>
   <block>
+    <key>blocks_wavfile_sink</key>
+    <param>
+      <key>bits_per_sample</key>
+      <value>8</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/root/SDR_Class/Lab3/test.wav</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(328, 374)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_wavfile_sink_0</value>
+    </param>
+    <param>
+      <key>nchan</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_wavfile_source</key>
     <param>
       <key>alias</key>
@@ -128,7 +175,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/root/SDR_Class/Lab3/RECV_Piano2.wav</value>
+      <value>/root/SDR_Class/piano2.wav</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -518,6 +565,12 @@
       <value>-1</value>
     </param>
   </block>
+  <connection>
+    <source_block_id>blocks_wavfile_source_0</source_block_id>
+    <sink_block_id>blocks_wavfile_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
   <connection>
     <source_block_id>blocks_wavfile_source_0</source_block_id>
     <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
