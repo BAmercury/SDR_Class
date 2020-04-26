@@ -2063,7 +2063,7 @@
     </param>
     <param>
       <key>update_time</key>
-      <value>0.10</value>
+      <value>0.30</value>
     </param>
     <param>
       <key>ylabel</key>
@@ -2075,11 +2075,11 @@
     </param>
     <param>
       <key>ymax</key>
-      <value>0.7</value>
+      <value>1</value>
     </param>
     <param>
       <key>ymin</key>
-      <value>-0.7</value>
+      <value>-1</value>
     </param>
   </block>
   <block>
