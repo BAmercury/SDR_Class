@@ -1003,7 +1003,7 @@
     <key>low_pass_filter</key>
     <param>
       <key>beta</key>
-      <value>6.76</value>
+      <value>beta</value>
     </param>
     <param>
       <key>alias</key>
@@ -1078,7 +1078,7 @@
     <key>low_pass_filter</key>
     <param>
       <key>beta</key>
-      <value>6.76</value>
+      <value>beta</value>
     </param>
     <param>
       <key>alias</key>
