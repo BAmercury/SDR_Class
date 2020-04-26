@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Fm Recv
-# Generated: Sun Apr 26 01:56:57 2020
+# Generated: Sun Apr 26 02:09:25 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -102,52 +102,6 @@ class FM_RECV(gr.top_block, Qt.QWidget):
                 taps=None,
                 fractional_bw=None,
         )
-        self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
-        	1024, #size
-        	samp_rate, #samp_rate
-        	"Recieved Wave Signal", #name
-        	1 #number of inputs
-        )
-        self.qtgui_time_sink_x_0.set_update_time(0.10)
-        self.qtgui_time_sink_x_0.set_y_axis(-0.7, 0.7)
-        
-        self.qtgui_time_sink_x_0.set_y_label("Amplitude", "")
-        
-        self.qtgui_time_sink_x_0.enable_tags(-1, True)
-        self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
-        self.qtgui_time_sink_x_0.enable_autoscale(True)
-        self.qtgui_time_sink_x_0.enable_grid(False)
-        self.qtgui_time_sink_x_0.enable_control_panel(False)
-        
-        if not True:
-          self.qtgui_time_sink_x_0.disable_legend()
-        
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
-        widths = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        colors = ["blue", "red", "green", "black", "cyan",
-                  "magenta", "yellow", "dark red", "dark green", "blue"]
-        styles = [1, 1, 1, 1, 1,
-                  1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
-                   -1, -1, -1, -1, -1]
-        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
-                  1.0, 1.0, 1.0, 1.0, 1.0]
-        
-        for i in xrange(1):
-            if len(labels[i]) == 0:
-                self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
-            else:
-                self.qtgui_time_sink_x_0.set_line_label(i, labels[i])
-            self.qtgui_time_sink_x_0.set_line_width(i, widths[i])
-            self.qtgui_time_sink_x_0.set_line_color(i, colors[i])
-            self.qtgui_time_sink_x_0.set_line_style(i, styles[i])
-            self.qtgui_time_sink_x_0.set_line_marker(i, markers[i])
-            self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
-        
-        self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.qtgui_freq_sink_x_1 = qtgui.freq_sink_f(
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -235,7 +189,7 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         self.low_pass_filter_1 = filter.fir_filter_fff(1, firdes.low_pass(
         	1, samp_rate, f_cut_off, 100, firdes.WIN_HAMMING, beta))
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(62.8e-3, 4, False)
-        self.blocks_wavfile_sink_0 = blocks.wavfile_sink("/root/SDR_Class/Lab3/RECV_Piano.wav", 1, samp_rate, 8)
+        self.blocks_wavfile_sink_0 = blocks.wavfile_sink("/root/SDR_Class/Lab3/test.wav", 1, samp_rate, 8)
         self.blocks_multiply_xx_1 = blocks.multiply_vff(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vff(1)
         self.blocks_multiply_conjugate_cc_0 = blocks.multiply_conjugate_cc(1)
@@ -255,7 +209,6 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_1, 0), (self.blocks_multiply_xx_1, 1))    
         self.connect((self.blocks_complex_to_arg_0, 0), (self.blocks_wavfile_sink_0, 0))    
         self.connect((self.blocks_complex_to_arg_0, 0), (self.qtgui_freq_sink_x_1, 0))    
-        self.connect((self.blocks_complex_to_arg_0, 0), (self.qtgui_time_sink_x_0, 0))    
         self.connect((self.blocks_complex_to_float_0, 0), (self.rational_resampler_xxx_0, 0))    
         self.connect((self.blocks_delay_0, 0), (self.blocks_multiply_conjugate_cc_0, 0))    
         self.connect((self.blocks_float_to_complex_0, 0), (self.blocks_delay_0, 0))    
@@ -295,7 +248,6 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         self.low_pass_filter_1_0.set_taps(firdes.low_pass(1, self.samp_rate, self.f_cut_off, 100, firdes.WIN_HAMMING, self.beta))
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate)
-        self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
 
     def get_gain(self):
         return self.gain
