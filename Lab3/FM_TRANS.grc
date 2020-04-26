@@ -1530,7 +1530,7 @@
     <key>qtgui_time_sink_x</key>
     <param>
       <key>autoscale</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>alias</key>
@@ -1878,11 +1878,11 @@
     </param>
     <param>
       <key>ymax</key>
-      <value>1</value>
+      <value>0.8</value>
     </param>
     <param>
       <key>ymin</key>
-      <value>-1</value>
+      <value>-0.8</value>
     </param>
   </block>
   <block>
@@ -2237,11 +2237,11 @@
     </param>
     <param>
       <key>ymax</key>
-      <value>1</value>
+      <value>700e-3</value>
     </param>
     <param>
       <key>ymin</key>
-      <value>-1</value>
+      <value>-700e-3</value>
     </param>
   </block>
   <block>
@@ -2319,7 +2319,7 @@
     </param>
     <param>
       <key>center_freq0</key>
-      <value>13208e6</value>
+      <value>1320e6</value>
     </param>
     <param>
       <key>norm_gain0</key>
