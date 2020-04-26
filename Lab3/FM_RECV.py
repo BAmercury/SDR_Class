@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Fm Recv
-# Generated: Sun Apr 26 20:22:14 2020
+# Generated: Sun Apr 26 20:30:11 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -153,7 +153,7 @@ class FM_RECV(gr.top_block, Qt.QWidget):
         self.low_pass_filter_1 = filter.fir_filter_fff(1, firdes.low_pass(
         	1, samp_rate, f_cut_off, 100, firdes.WIN_HAMMING, beta))
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(62.8e-3, 4, False)
-        self.blocks_wavfile_sink_0 = blocks.wavfile_sink("/root/SDR_Class/Lab3/RECV_PIANO.wav", 1, samp_rate, 8)
+        self.blocks_wavfile_sink_0 = blocks.wavfile_sink("/root/SDR_Class/Lab3/RECV_PIANO2.wav", 1, samp_rate, 8)
         self.blocks_multiply_xx_1 = blocks.multiply_vff(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vff(1)
         self.blocks_multiply_conjugate_cc_0 = blocks.multiply_conjugate_cc(1)
