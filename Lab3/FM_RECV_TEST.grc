@@ -132,7 +132,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 284)</value>
+      <value>(336, 228)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -187,7 +187,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 382)</value>
+      <value>(584, 430)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -289,7 +289,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(424, 255)</value>
+      <value>(672, 255)</value>
     </param>
     <param>
       <key>gui_hint</key>
