@@ -1385,7 +1385,7 @@
     </param>
     <param>
       <key>name</key>
-      <value>""</value>
+      <value>Complex Wave Signal</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -1440,7 +1440,7 @@
     <key>qtgui_freq_sink_x</key>
     <param>
       <key>autoscale</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>average</key>
@@ -1798,7 +1798,7 @@
     </param>
     <param>
       <key>center_freq0</key>
-      <value>1320e6</value>
+      <value>1340e6</value>
     </param>
     <param>
       <key>dc_offs_enb0</key>
