@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Bpsk Rx
-# Generated: Sat May  2 20:49:29 2020
+# Generated: Sat May  2 20:52:39 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -136,7 +136,7 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
         self._qtgui_const_sink_x_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_const_sink_x_0_win)
         self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 10e-3, 500)
-        self.blocks_threshold_ff_0 = blocks.threshold_ff(100e-3, 100e-3, 0)
+        self.blocks_threshold_ff_0 = blocks.threshold_ff(-100e-3, 100e-3, 0)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((0, ))
         self.blocks_float_to_complex_0 = blocks.float_to_complex(1)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, "/root/SDR_Class/Lab4/recv_file", False)

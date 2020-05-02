@@ -414,7 +414,7 @@
     </param>
     <param>
       <key>low</key>
-      <value>100e-3</value>
+      <value>-100e-3</value>
     </param>
     <param>
       <key>maxoutbuf</key>
