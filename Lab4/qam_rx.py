@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Qam Rx
-# Generated: Sat May  2 21:42:34 2020
+# Generated: Sat May  2 22:02:08 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -60,11 +60,11 @@ class qam_rx(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.samp_sym = samp_sym = 2
+        self.samp_sym = samp_sym = 4
         self.samp_rate = samp_rate = 1e6
-        self.qam_points = qam_points = 4
+        self.qam_points = qam_points = 16
         self.center_freq = center_freq = .13e10
-        self.bits_sym = bits_sym = 2
+        self.bits_sym = bits_sym = 4
         self.bandwidth = bandwidth = 500e3
 
         ##################################################
@@ -113,7 +113,7 @@ class qam_rx(gr.top_block, Qt.QWidget):
           verbose=False,
           log=False,
           )
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_gr_complex*1, "/root/SDR_Class/Lab4/recv.txt", True)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_gr_complex*1, "/root/SDR_Class/Lab4/recv2.txt", True)
         self.blocks_file_sink_0.set_unbuffered(False)
         self.blks2_packet_decoder_0 = grc_blks2.packet_demod_c(grc_blks2.packet_decoder(
         		access_code="",
@@ -147,8 +147,8 @@ class qam_rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
         self.qtgui_sink_x_0.set_frequency_range(self.center_freq, self.samp_rate)
+        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
 
     def get_qam_points(self):
         return self.qam_points
@@ -161,8 +161,8 @@ class qam_rx(gr.top_block, Qt.QWidget):
 
     def set_center_freq(self, center_freq):
         self.center_freq = center_freq
-        self.uhd_usrp_source_0.set_center_freq(self.center_freq, 0)
         self.qtgui_sink_x_0.set_frequency_range(self.center_freq, self.samp_rate)
+        self.uhd_usrp_source_0.set_center_freq(self.center_freq, 0)
 
     def get_bits_sym(self):
         return self.bits_sym
