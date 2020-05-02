@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Qam Tx
-# Generated: Sat May  2 21:42:13 2020
+# Generated: Sat May  2 22:01:06 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -60,11 +60,11 @@ class qam_tx(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.samp_sym = samp_sym = 2
+        self.samp_sym = samp_sym = 4
         self.samp_rate = samp_rate = 1E6
         self.qam_points = qam_points = 4
         self.center_freq = center_freq = 1.3e9
-        self.bits_sym = bits_sym = 2
+        self.bits_sym = bits_sym = 4
         self.bandwidth = bandwidth = 500e3
 
         ##################################################

@@ -132,7 +132,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2</value>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -186,7 +186,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>4</value>
+      <value>16</value>
     </param>
   </block>
   <block>
@@ -240,7 +240,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2</value>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -271,7 +271,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 201)</value>
+      <value>(208, 201)</value>
     </param>
     <param>
       <key>_rotation</key>
