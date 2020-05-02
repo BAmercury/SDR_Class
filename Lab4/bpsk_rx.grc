@@ -159,7 +159,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 196)</value>
+      <value>(880, 28)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -257,7 +257,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 182)</value>
+      <value>(1048, 14)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -300,7 +300,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(528, 273)</value>
+      <value>(744, 273)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -394,7 +394,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 6)</value>
+      <value>(704, 6)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -453,7 +453,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 390)</value>
+      <value>(1040, 86)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -551,7 +551,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 309)</value>
+      <value>(1024, 309)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -906,7 +906,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 175)</value>
+      <value>(1040, 175)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -981,7 +981,7 @@
     </param>
     <param>
       <key>bw0</key>
-      <value>200e6</value>
+      <value>0</value>
     </param>
     <param>
       <key>center_freq0</key>
@@ -2056,12 +2056,6 @@
   </connection>
   <connection>
     <source_block_id>blocks_add_const_vxx_0</source_block_id>
-    <sink_block_id>blocks_float_to_complex_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_add_const_vxx_0</source_block_id>
     <sink_block_id>blocks_wavfile_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -2099,6 +2093,12 @@
   <connection>
     <source_block_id>blocks_threshold_ff_0</source_block_id>
     <sink_block_id>blocks_add_const_vxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_threshold_ff_0</source_block_id>
+    <sink_block_id>blocks_float_to_complex_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Bpsk Rx
-# Generated: Sat May  2 20:57:39 2020
+# Generated: Sat May  2 21:01:03 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -76,7 +76,6 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
         self.uhd_usrp_source_0.set_center_freq(center_freq, 0)
         self.uhd_usrp_source_0.set_normalized_gain(1, 0)
         self.uhd_usrp_source_0.set_antenna("TX/RX", 0)
-        self.uhd_usrp_source_0.set_bandwidth(200e6, 0)
         self.qtgui_sink_x_0 = qtgui.sink_c(
         	1024, #fftsize
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -150,7 +149,6 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.blocks_add_const_vxx_0, 0), (self.blocks_file_sink_0, 0))    
-        self.connect((self.blocks_add_const_vxx_0, 0), (self.blocks_float_to_complex_0, 0))    
         self.connect((self.blocks_add_const_vxx_0, 0), (self.blocks_wavfile_sink_0, 0))    
         self.connect((self.blocks_complex_to_float_0, 1), (self.blocks_multiply_const_vxx_0, 0))    
         self.connect((self.blocks_complex_to_float_0, 0), (self.blocks_threshold_ff_0, 0))    
@@ -158,6 +156,7 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_float_to_complex_0, 0), (self.qtgui_sink_x_0, 0))    
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_float_to_complex_0, 1))    
         self.connect((self.blocks_threshold_ff_0, 0), (self.blocks_add_const_vxx_0, 0))    
+        self.connect((self.blocks_threshold_ff_0, 0), (self.blocks_float_to_complex_0, 0))    
         self.connect((self.digital_cma_equalizer_cc_0, 0), (self.blocks_complex_to_float_0, 0))    
         self.connect((self.uhd_usrp_source_0, 0), (self.digital_cma_equalizer_cc_0, 0))    
 
@@ -172,8 +171,8 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.qtgui_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
+        self.qtgui_sink_x_0.set_frequency_range(0, self.samp_rate)
 
     def get_center_freq(self):
         return self.center_freq
