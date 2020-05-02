@@ -136,6 +136,33 @@
     </param>
   </block>
   <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(120, 328)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>samp_rate_u</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>200e3</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_add_const_vxx</key>
     <param>
       <key>alias</key>
@@ -1978,7 +2005,7 @@
     </param>
     <param>
       <key>samp_rate</key>
-      <value>samp_rate</value>
+      <value>samp_rate_u</value>
     </param>
     <param>
       <key>hide_cmd_port</key>

@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Bpsk Rx
-# Generated: Sat May  2 21:11:22 2020
+# Generated: Sat May  2 21:19:52 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -59,6 +59,7 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
+        self.samp_rate_u = samp_rate_u = 200e3
         self.samp_rate = samp_rate = 48000
         self.center_freq = center_freq = .135e10
 
@@ -72,7 +73,7 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
         		channels=range(1),
         	),
         )
-        self.uhd_usrp_source_0.set_samp_rate(samp_rate)
+        self.uhd_usrp_source_0.set_samp_rate(samp_rate_u)
         self.uhd_usrp_source_0.set_center_freq(center_freq, 0)
         self.uhd_usrp_source_0.set_normalized_gain(1, 0)
         self.uhd_usrp_source_0.set_antenna("TX/RX", 0)
@@ -164,13 +165,19 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
         event.accept()
 
 
+    def get_samp_rate_u(self):
+        return self.samp_rate_u
+
+    def set_samp_rate_u(self, samp_rate_u):
+        self.samp_rate_u = samp_rate_u
+        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate_u)
+
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.qtgui_sink_x_0.set_frequency_range(0, self.samp_rate)
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
 
     def get_center_freq(self):
         return self.center_freq
