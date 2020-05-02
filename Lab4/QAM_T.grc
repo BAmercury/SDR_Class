@@ -159,7 +159,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1.34e9</value>
+      <value>1.3e9</value>
     </param>
   </block>
   <block>
@@ -251,7 +251,7 @@
     </param>
     <param>
       <key>bits_per_symbol</key>
-      <value>2</value>
+      <value>bits_sym</value>
     </param>
     <param>
       <key>alias</key>
@@ -283,7 +283,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>float</value>
+      <value>byte</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -307,7 +307,7 @@
     </param>
     <param>
       <key>samples_per_symbol</key>
-      <value>2</value>
+      <value>samp_sym</value>
     </param>
   </block>
   <block>
@@ -330,7 +330,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>dummy.txt</value>
+      <value>/root/SDR_Class/Lab4/dummy.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -354,7 +354,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>complex</value>
+      <value>byte</value>
     </param>
     <param>
       <key>repeat</key>
@@ -385,7 +385,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 236)</value>
+      <value>(656, 236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -476,7 +476,7 @@
     </param>
     <param>
       <key>constellation_points</key>
-      <value>4</value>
+      <value>qam_points</value>
     </param>
     <param>
       <key>samples_per_symbol</key>
@@ -531,7 +531,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(928, 158)</value>
+      <value>(792, 94)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -786,7 +786,7 @@
     </param>
     <param>
       <key>bw0</key>
-      <value>0</value>
+      <value>bandwidth</value>
     </param>
     <param>
       <key>center_freq0</key>
@@ -1434,7 +1434,7 @@
     </param>
     <param>
       <key>dev_addr</key>
-      <value>""</value>
+      <value>addr=192.168.10.2</value>
     </param>
     <param>
       <key>dev_args</key>
@@ -1446,7 +1446,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 327)</value>
+      <value>(832, 265)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1578,7 +1578,7 @@
     </param>
     <param>
       <key>stream_chans</key>
-      <value>addr=192.168.10.2</value>
+      <value></value>
     </param>
     <param>
       <key>sync</key>
