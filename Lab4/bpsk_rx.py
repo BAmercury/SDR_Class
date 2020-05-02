@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Bpsk Rx
-# Generated: Sat May  2 20:36:54 2020
+# Generated: Sat May  2 20:46:58 2020
 ##################################################
 
 if __name__ == '__main__':
@@ -170,8 +170,8 @@ class bpsk_rx(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
         self.qtgui_sink_x_0.set_frequency_range(0, self.samp_rate)
+        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
 
     def get_center_freq(self):
         return self.center_freq
