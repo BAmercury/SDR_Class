@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: SDR T580 Team 1 Final Project
-# Description: QPSK Simulation
+# Title: SDR T580 Team 1 Final Project No Relay with Jamming
+# Description: QPSK Simulation No Relay With Jamming
 # GNU Radio version: 3.7.13.5
 ##################################################
 
@@ -18,6 +18,7 @@ if __name__ == '__main__':
             print "Warning: failed to XInitThreads()"
 
 from PyQt4 import Qt
+from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import channels
 from gnuradio import digital
@@ -34,12 +35,12 @@ import sys
 from gnuradio import qtgui
 
 
-class sdr_T580_final_project(gr.top_block, Qt.QWidget):
+class sdr_T580_final_project_norelay_jammer(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "SDR T580 Team 1 Final Project")
+        gr.top_block.__init__(self, "SDR T580 Team 1 Final Project No Relay with Jamming")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("SDR T580 Team 1 Final Project")
+        self.setWindowTitle("SDR T580 Team 1 Final Project No Relay with Jamming")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -57,7 +58,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "sdr_T580_final_project")
+        self.settings = Qt.QSettings("GNU Radio", "sdr_T580_final_project_norelay_jammer")
         self.restoreGeometry(self.settings.value("geometry").toByteArray())
 
 
@@ -75,6 +76,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.qpsk = qpsk = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.phase_bw = phase_bw = 6.28/100.0
         self.noise_volt = noise_volt = 0.5
+        self.jammer_frequency = jammer_frequency = 50000
         self.freq_offset = freq_offset = 0
         self.eq_gain = eq_gain = 0.01
         self.delay = delay = 58
@@ -407,6 +409,10 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
 
         self._qtgui_const_sink_x_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_const_sink_x_0_win)
+        self._jammer_frequency_range = Range(0, 100000, 1, 50000, 200)
+        self._jammer_frequency_win = RangeWidget(self._jammer_frequency_range, self.set_jammer_frequency, 'Jamming Frequency', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._jammer_frequency_win)
+        self.jammer = analog.sig_source_c(samp_rate, analog.GR_SIN_WAVE, jammer_frequency, 1, 0)
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(samp_per_symbol, timing_loop_bw, (rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0 = digital.map_bb(([0,1,2,3]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(4)
@@ -433,15 +439,16 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.blocks_unpack_k_bits_bb_0_0 = blocks.unpack_k_bits_bb(8)
         self.blocks_unpack_k_bits_bb_0 = blocks.unpack_k_bits_bb(2)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
+        self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data_source.bin', True)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_1_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\RX_byte.bin', False)
+        self.blocks_file_sink_1_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\norelay_jam50Khz\\RX_byte.bin', False)
         self.blocks_file_sink_1_0.set_unbuffered(False)
-        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\TX_byte.bin', False)
+        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\norelay_jam50Khz\\TX_byte.bin', False)
         self.blocks_file_sink_1.set_unbuffered(False)
-        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_float*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\TX.bin', False)
+        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_float*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\norelay_jam50Khz\\TX.bin', False)
         self.blocks_file_sink_0_0.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\RX.bin', False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\norelay_jam50Khz\\RX.bin', False)
         self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_float*1, int(delay))
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
@@ -459,6 +466,8 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_delay_0, 0), (self.qtgui_time_sink_x_0_0, 1))
         self.connect((self.blocks_file_source_0, 0), (self.blocks_unpack_k_bits_bb_0_0, 0))
         self.connect((self.blocks_file_source_0, 0), (self.digital_constellation_modulator_0, 0))
+        self.connect((self.blocks_multiply_xx_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
+        self.connect((self.blocks_multiply_xx_0, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.blocks_throttle_0, 0), (self.channels_channel_model_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_const_sink_x_0_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_freq_sink_x_0, 0))
@@ -466,8 +475,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_unpack_k_bits_bb_0, 0), (self.blocks_file_sink_1_0, 0))
         self.connect((self.blocks_unpack_k_bits_bb_0_0, 0), (self.blocks_char_to_float_0_0, 0))
         self.connect((self.blocks_unpack_k_bits_bb_0_0, 0), (self.blocks_file_sink_1, 0))
-        self.connect((self.channels_channel_model_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
-        self.connect((self.channels_channel_model_0, 0), (self.qtgui_freq_sink_x_1, 0))
+        self.connect((self.channels_channel_model_0, 0), (self.blocks_multiply_xx_0, 1))
         self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_map_bb_0, 0))
         self.connect((self.digital_constellation_modulator_0, 0), (self.blocks_throttle_0, 0))
@@ -477,9 +485,10 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_unpack_k_bits_bb_0, 0))
         self.connect((self.digital_map_bb_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
+        self.connect((self.jammer, 0), (self.blocks_multiply_xx_0, 0))
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "sdr_T580_final_project")
+        self.settings = Qt.QSettings("GNU Radio", "sdr_T580_final_project_norelay_jammer")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -527,6 +536,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_2.set_frequency_range(0, self.samp_rate)
         self.qtgui_freq_sink_x_1.set_frequency_range(0, self.samp_rate)
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
+        self.jammer.set_sampling_freq(self.samp_rate)
         self.blocks_throttle_0.set_sample_rate(self.samp_rate)
 
     def get_rrc_taps(self):
@@ -562,6 +572,13 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.noise_volt = noise_volt
         self.channels_channel_model_0.set_noise_voltage(self.noise_volt)
 
+    def get_jammer_frequency(self):
+        return self.jammer_frequency
+
+    def set_jammer_frequency(self, jammer_frequency):
+        self.jammer_frequency = jammer_frequency
+        self.jammer.set_frequency(self.jammer_frequency)
+
     def get_freq_offset(self):
         return self.freq_offset
 
@@ -590,7 +607,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.arity = arity
 
 
-def main(top_block_cls=sdr_T580_final_project, options=None):
+def main(top_block_cls=sdr_T580_final_project_norelay_jammer, options=None):
 
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
