@@ -18,7 +18,6 @@ if __name__ == '__main__':
             print "Warning: failed to XInitThreads()"
 
 from PyQt4 import Qt
-from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import channels
 from gnuradio import digital
@@ -29,6 +28,7 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
+import pmt
 import sip
 import sys
 from gnuradio import qtgui
@@ -77,7 +77,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.noise_volt = noise_volt = 0.0001
         self.freq_offset = freq_offset = 0
         self.eq_gain = eq_gain = 0.01
-        self.delay = delay = 0
+        self.delay = delay = 58
         self.arity = arity = 4
 
         ##################################################
@@ -113,6 +113,22 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
             self.controls_grid_layout_0.setRowStretch(r, 1)
         for c in range(2, 3):
             self.controls_grid_layout_0.setColumnStretch(c, 1)
+        self.received = Qt.QTabWidget()
+        self.received_widget_0 = Qt.QWidget()
+        self.received_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.received_widget_0)
+        self.received_grid_layout_0 = Qt.QGridLayout()
+        self.received_layout_0.addLayout(self.received_grid_layout_0)
+        self.received.addTab(self.received_widget_0, 'Constellation')
+        self.received_widget_1 = Qt.QWidget()
+        self.received_layout_1 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.received_widget_1)
+        self.received_grid_layout_1 = Qt.QGridLayout()
+        self.received_layout_1.addLayout(self.received_grid_layout_1)
+        self.received.addTab(self.received_widget_1, 'Symbols')
+        self.top_grid_layout.addWidget(self.received, 2, 0, 1, 1)
+        for r in range(2, 3):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(0, 1):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self._phase_bw_range = Range(0.0, 1.0, 0.01, 6.28/100.0, 200)
         self._phase_bw_win = RangeWidget(self._phase_bw_range, self.set_phase_bw, 'Phase: Bandwidth', "slider", float)
         self.controls_grid_layout_1.addWidget(self._phase_bw_win, 0, 2, 1, 1)
@@ -141,26 +157,10 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
             self.controls_grid_layout_1.setRowStretch(r, 1)
         for c in range(1, 2):
             self.controls_grid_layout_1.setColumnStretch(c, 1)
-        self._delay_range = Range(0, 200, 1, 0, 200)
+        self._delay_range = Range(0, 200, 1, 58, 200)
         self._delay_win = RangeWidget(self._delay_range, self.set_delay, 'Delay', "counter_slider", float)
         self.top_grid_layout.addWidget(self._delay_win, 1, 0, 1, 1)
         for r in range(1, 2):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(0, 1):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self.received = Qt.QTabWidget()
-        self.received_widget_0 = Qt.QWidget()
-        self.received_layout_0 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.received_widget_0)
-        self.received_grid_layout_0 = Qt.QGridLayout()
-        self.received_layout_0.addLayout(self.received_grid_layout_0)
-        self.received.addTab(self.received_widget_0, 'Constellation')
-        self.received_widget_1 = Qt.QWidget()
-        self.received_layout_1 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.received_widget_1)
-        self.received_grid_layout_1 = Qt.QGridLayout()
-        self.received_layout_1.addLayout(self.received_grid_layout_1)
-        self.received.addTab(self.received_widget_1, 'Symbols')
-        self.top_grid_layout.addWidget(self.received, 2, 0, 1, 1)
-        for r in range(2, 3):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
@@ -216,6 +216,51 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.qtgui_const_sink_x_0 = qtgui.const_sink_c(
+        	1024, #size
+        	"", #name
+        	1 #number of inputs
+        )
+        self.qtgui_const_sink_x_0.set_update_time(0.10)
+        self.qtgui_const_sink_x_0.set_y_axis(-2, 2)
+        self.qtgui_const_sink_x_0.set_x_axis(-2, 2)
+        self.qtgui_const_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, "")
+        self.qtgui_const_sink_x_0.enable_autoscale(False)
+        self.qtgui_const_sink_x_0.enable_grid(False)
+        self.qtgui_const_sink_x_0.enable_axis_labels(True)
+
+        if not True:
+          self.qtgui_const_sink_x_0.disable_legend()
+
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "red", "red", "red",
+                  "red", "red", "red", "red", "red"]
+        styles = [0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0]
+        markers = [0, 0, 0, 0, 0,
+                   0, 0, 0, 0, 0]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_const_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_const_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_const_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_const_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_const_sink_x_0.set_line_style(i, styles[i])
+            self.qtgui_const_sink_x_0.set_line_marker(i, markers[i])
+            self.qtgui_const_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_const_sink_x_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.received_grid_layout_0.addWidget(self._qtgui_const_sink_x_0_win, 0, 0, 1, 1)
+        for r in range(0, 1):
+            self.received_grid_layout_0.setRowStretch(r, 1)
+        for c in range(0, 1):
+            self.received_grid_layout_0.setColumnStretch(c, 1)
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(samp_per_symbol, timing_loop_bw, (rrc_taps), nfilts, nfilts/2, 1.5, 2)
         self.digital_map_bb_0 = digital.map_bb(([0,1,2,3]))
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(4)
@@ -242,23 +287,28 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.blocks_unpack_k_bits_bb_0_0 = blocks.unpack_k_bits_bb(8)
         self.blocks_unpack_k_bits_bb_0 = blocks.unpack_k_bits_bb(2)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
-        self.blocks_float_to_char_0 = blocks.float_to_char(1, 1)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data_source.bin', False)
+        self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_float*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\TX.bin', False)
+        self.blocks_file_sink_0_0.set_unbuffered(False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\RX.bin', False)
+        self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_float*1, int(delay))
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
-        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_SQR_WAVE, 1000, 1, 0)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_float_to_char_0, 0))
+        self.connect((self.blocks_char_to_float_0, 0), (self.blocks_file_sink_0, 0))
         self.connect((self.blocks_char_to_float_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.blocks_char_to_float_0_0, 0), (self.blocks_delay_0, 0))
+        self.connect((self.blocks_delay_0, 0), (self.blocks_file_sink_0_0, 0))
         self.connect((self.blocks_delay_0, 0), (self.qtgui_time_sink_x_0_0, 1))
-        self.connect((self.blocks_float_to_char_0, 0), (self.blocks_unpack_k_bits_bb_0_0, 0))
-        self.connect((self.blocks_float_to_char_0, 0), (self.digital_constellation_modulator_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.blocks_unpack_k_bits_bb_0_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.digital_constellation_modulator_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.channels_channel_model_0, 0))
         self.connect((self.blocks_unpack_k_bits_bb_0, 0), (self.blocks_char_to_float_0, 0))
         self.connect((self.blocks_unpack_k_bits_bb_0_0, 0), (self.blocks_char_to_float_0_0, 0))
@@ -267,6 +317,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_map_bb_0, 0))
         self.connect((self.digital_constellation_modulator_0, 0), (self.blocks_throttle_0, 0))
         self.connect((self.digital_costas_loop_cc_0, 0), (self.digital_constellation_decoder_cb_0, 0))
+        self.connect((self.digital_costas_loop_cc_0, 0), (self.qtgui_const_sink_x_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_unpack_k_bits_bb_0, 0))
         self.connect((self.digital_map_bb_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
@@ -318,7 +369,6 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.samp_rate)
         self.blocks_throttle_0.set_sample_rate(self.samp_rate)
-        self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
 
     def get_rrc_taps(self):
         return self.rrc_taps
