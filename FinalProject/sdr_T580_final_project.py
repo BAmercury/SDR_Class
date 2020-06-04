@@ -74,7 +74,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.rolloff = rolloff = 0.350
         self.qpsk = qpsk = digital.constellation_rect(([0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]), ([0, 1, 2, 3]), 4, 2, 2, 1, 1).base()
         self.phase_bw = phase_bw = 6.28/100.0
-        self.noise_volt = noise_volt = 0.5
+        self.noise_volt = noise_volt = 0
         self.freq_offset = freq_offset = 0
         self.eq_gain = eq_gain = 0.01
         self.delay = delay = 58
@@ -120,7 +120,7 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
             self.controls_grid_layout_1.setRowStretch(r, 1)
         for c in range(2, 3):
             self.controls_grid_layout_1.setColumnStretch(c, 1)
-        self._noise_volt_range = Range(0, 1, 0.01, 0.5, 200)
+        self._noise_volt_range = Range(0, 1, 0.01, 0, 200)
         self._noise_volt_win = RangeWidget(self._noise_volt_range, self.set_noise_volt, 'Noise Voltage', "counter_slider", float)
         self.controls_grid_layout_0.addWidget(self._noise_volt_win, 0, 0, 1, 1)
         for r in range(0, 1):
@@ -433,16 +433,13 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         self.blocks_unpack_k_bits_bb_0_0 = blocks.unpack_k_bits_bb(8)
         self.blocks_unpack_k_bits_bb_0 = blocks.unpack_k_bits_bb(2)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data_source.bin', True)
+        self.blocks_pack_k_bits_bb_0 = blocks.pack_k_bits_bb(8)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data_source_matlab.bin', True)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_1_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\RX_byte.bin', False)
+        self.blocks_file_sink_1_0 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\Trial0_RX_byte.bin', False)
         self.blocks_file_sink_1_0.set_unbuffered(False)
-        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\TX_byte.bin', False)
+        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\Trial0_TX_byte.bin', False)
         self.blocks_file_sink_1.set_unbuffered(False)
-        self.blocks_file_sink_0_0 = blocks.file_sink(gr.sizeof_float*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\TX.bin', False)
-        self.blocks_file_sink_0_0.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, 'C:\\Users\\brian\\Documents\\SDR_Class\\FinalProject\\data\\RX.bin', False)
-        self.blocks_file_sink_0.set_unbuffered(False)
         self.blocks_delay_0 = blocks.delay(gr.sizeof_float*1, int(delay))
         self.blocks_char_to_float_0_0 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
@@ -452,13 +449,12 @@ class sdr_T580_final_project(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_char_to_float_0, 0), (self.blocks_file_sink_0, 0))
         self.connect((self.blocks_char_to_float_0, 0), (self.qtgui_time_sink_x_0_0, 0))
         self.connect((self.blocks_char_to_float_0_0, 0), (self.blocks_delay_0, 0))
-        self.connect((self.blocks_char_to_float_0_0, 0), (self.blocks_file_sink_0_0, 0))
         self.connect((self.blocks_delay_0, 0), (self.qtgui_time_sink_x_0_0, 1))
-        self.connect((self.blocks_file_source_0, 0), (self.blocks_unpack_k_bits_bb_0_0, 0))
-        self.connect((self.blocks_file_source_0, 0), (self.digital_constellation_modulator_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.blocks_pack_k_bits_bb_0, 0))
+        self.connect((self.blocks_pack_k_bits_bb_0, 0), (self.blocks_unpack_k_bits_bb_0_0, 0))
+        self.connect((self.blocks_pack_k_bits_bb_0, 0), (self.digital_constellation_modulator_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.channels_channel_model_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_const_sink_x_0_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_freq_sink_x_0, 0))
