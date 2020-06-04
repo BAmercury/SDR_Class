@@ -16,10 +16,10 @@ rx_prbdet = comm.PreambleDetector(prb, 'Detections', 'All');
 tx_prbdet = comm.PreambleDetector(prb, 'Detections', 'All');
 
 %% Now load the TX and RX messages
-RX_file_id = fopen('data/Trial0_RX_byte.bin','rb');
+RX_file_id = fopen('data/Trial9_RX_byte.bin','rb');
 RX_dat = fread(RX_file_id, 'uint8');
 fclose(RX_file_id);
-TX_file_id = fopen('data/Trial0_TX_byte.bin','rb');
+TX_file_id = fopen('data/Trial9_TX_byte.bin','rb');
 TX_dat = fread(TX_file_id, 'uint8');
 fclose(TX_file_id);
 %% Try to detect the preamble index in both messages, start with RX
@@ -70,8 +70,8 @@ tx_idx(3)
 % these indicies indicate the index where the preamble ends
 tx_index = 16;
 tx_index2 = 132
-rx_index = 306;
-rx_index2 = 422;
+rx_index = 248;
+rx_index2 = 364;
 plot(TX_dat(tx_index:tx_index2));
 hold on;
 plot(RX_dat(rx_index:rx_index2));

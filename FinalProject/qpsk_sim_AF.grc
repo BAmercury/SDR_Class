@@ -124,7 +124,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>58</value>
+      <value>68</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -250,7 +250,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>0.1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -779,6 +779,53 @@
     </param>
   </block>
   <block>
+    <key>analog_feedforward_agc_cc</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(904, 228)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_feedforward_agc_cc_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_samples</key>
+      <value>256</value>
+    </param>
+    <param>
+      <key>reference</key>
+      <value>1.0</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_char_to_float</key>
     <param>
       <key>alias</key>
@@ -951,7 +998,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>C:\Users\brian\Documents\SDR_Class\FinalProject\data\Trial4_TX_byte.bin</value>
+      <value>C:\Users\brian\Documents\SDR_Class\FinalProject\data\Trial6_TX_byte.bin</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1002,7 +1049,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>C:\Users\brian\Documents\SDR_Class\FinalProject\data\Trial4_RX_byte.bin</value>
+      <value>C:\Users\brian\Documents\SDR_Class\FinalProject\data\Trial6_RX_byte.bin</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1470,7 +1517,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1072, 164)</value>
+      <value>(1336, 212)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1772,7 +1819,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(856, 188)</value>
+      <value>(1120, 188)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2561,7 +2608,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 140)</value>
+      <value>(440, 140)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2860,7 +2907,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(896, 108)</value>
+      <value>(904, 116)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3778,6 +3825,12 @@
     </param>
   </block>
   <connection>
+    <source_block_id>analog_feedforward_agc_cc_0</source_block_id>
+    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_char_to_float_0</source_block_id>
     <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -3857,7 +3910,7 @@
   </connection>
   <connection>
     <source_block_id>channels_channel_model_0</source_block_id>
-    <sink_block_id>digital_pfb_clock_sync_xxx_0</sink_block_id>
+    <sink_block_id>analog_feedforward_agc_cc_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
