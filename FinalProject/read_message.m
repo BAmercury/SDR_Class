@@ -16,17 +16,17 @@ rx_prbdet = comm.PreambleDetector(prb, 'Detections', 'All');
 tx_prbdet = comm.PreambleDetector(prb, 'Detections', 'All');
 
 %% Now load the TX and RX messages
-RX_file_id = fopen('data/Trial11_RX_byte.bin','rb');
+RX_file_id = fopen('data/Trial7_RX_byte.bin','rb');
 RX_dat = fread(RX_file_id, 'uint8');
 fclose(RX_file_id);
-TX_file_id = fopen('data/Trial11_TX_byte.bin','rb');
+TX_file_id = fopen('data/Trial7_TX_byte.bin','rb');
 TX_dat = fread(TX_file_id, 'uint8');
 fclose(TX_file_id);
 %% Try to detect the preamble index in both messages, start with RX
 % Code needs to be tuned
 x2 = pskmod(RX_dat,4,pi/4,'gray');
 % Set Threshold
-rx_prbdet.Threshold = 7.9
+rx_prbdet.Threshold = 7.2
 [rx_idx, rx_detmet] = rx_prbdet(x2);
 
 rx_no_elements = numel(rx_idx)
@@ -37,8 +37,6 @@ rx_detmetSort(1:5)
 
 % Display the first few RX indicies, the spacing between them should be 116
 rx_idx(1)
-rx_idx(2)
-rx_idx(3)
 
 %% Now for the TX
 x1 = pskmod(TX_dat,4,pi/4,'gray');
@@ -68,10 +66,10 @@ tx_idx(3)
 
 
 % these indicies indicate the index where the preamble ends
-tx_index = 16;
-tx_index2 = 132
-rx_index = 16;
-rx_index2 = 132;
+tx_index = tx_idx(1);
+tx_index2 = tx_idx(2)
+rx_index = 7274;
+rx_index2 = 7390;
 plot(TX_dat(tx_index:tx_index2));
 hold on;
 plot(RX_dat(rx_index:rx_index2));
